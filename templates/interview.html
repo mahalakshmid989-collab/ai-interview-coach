@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interview</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <h2 id="question">Loading...</h2>
+
+        <textarea id="answer" placeholder="Type your answer here..."></textarea>
+
+        <div id="result" class="result-box"></div>
+
+        <div class="buttons">
+            <button onclick="submitAnswer()">Submit</button>
+            <button onclick="nextQuestion()">Next</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+window.onload = function() {
+    nextQuestion(); // load first question
+};
+
+function nextQuestion() {
+    fetch('/get_question')
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById('question').innerText = data.question;
+        document.getElementById('answer').value = "";
+        document.getElementById('result').innerHTML = "";
+    });
+}
+
+function submitAnswer() {
+    const answer = document.getElementById('answer').value;
+
+    fetch('/submit_answer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ answer: answer })
+    })
+    .then(res => res.json())
+    .then(data => {
+        let html = "<h3>Score: " + data.score + "/10</h3><ul>";
+
+        data.feedback.forEach(fb => {
+            html += "<li>" + fb + "</li>";
+        });
+
+        html += "</ul>";
+
+        document.getElementById('result').innerHTML = html;
+    });
+}
+</script>
+
+</body>
+</html>

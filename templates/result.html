@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interview Report</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="report-container">
+
+    <div class="report-card">
+
+        <h1>🎓 Interview Report</h1>
+
+        <p class="mode">Mode: {{ mode }}</p>
+
+        <h2 class="score">{{ score }} / {{ max_score }}</h2>
+        <h3 class="performance">{{ percent }}% • {{ performance }}</h3>
+
+        
+        <!-- SECTIONS -->
+        <div class="report-section">
+            <h3>💪 Strengths</h3>
+            <ul>
+                <li>✔ Clear communication</li>
+                <li>✔ Good understanding</li>
+            </ul>
+        </div>
+
+        <div class="report-section">
+            <h3>📈 Improvements</h3>
+            <ul>
+                <li>✘ Add real-world examples</li>
+                <li>✘ Improve structure</li>
+            </ul>
+        </div>
+
+        <a href="/">
+            <button class="restart-btn">Restart Interview</button>
+        </a>
+
+        <a href="/download">
+            <button class="restart-btn">📄 Download Report</button>
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Questions</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- ✅ CENTER WRAPPER -->
+<div class="page-center">
+
+    <div class="interview-box">
+
+        <h3>Interview Progress</h3>
+        <p>Question {{ progress }} / {{ total }}</p>
+
+        <!-- ✅ Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: {{ progress_percent }}%;"></div>
+        </div>
+
+        <!-- ✅ Question -->
+        <h2>{{ question }}</h2>
+
+        <!-- ✅ Answer Form -->
+        <<form method="POST" action="/question">
+            <textarea name="answer" placeholder="Type your answer here...">{{ user_answer }}</textarea>
+            <br><br>
+            <button type="submit">Submit Answer</button>
+        </form>
+
+        <!-- ✅ Feedback -->
+        {% if feedback %}
+            <div class="feedback-card">
+                <p>{{ feedback }}</p>
+            </div>
+
+            <!-- ✅ Next Button -->
+            <a href="/next">
+                <button type="button">Next Question</button>
+            </a>
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
